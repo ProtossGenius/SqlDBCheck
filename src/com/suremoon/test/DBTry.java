@@ -20,7 +20,8 @@ public class DBTry {
         stat.executeUpdate("insert into `user` values(10001, 'sui')");
         stat.executeUpdate("create table  items(id int, uid int, itype int);");
         stat.executeUpdate("insert  into items values (1, 10000, 1);");
-        stat.executeUpdate("insert  into items values (1, 100001, 1);");//uid not exist.
+        stat.executeUpdate("insert  into items values (2, 100001, 1);");//uid not exist.
+        stat.executeUpdate("insert  into items values (2, 100001, 1);");//uid not exist.
         conn.close();
     }
 
