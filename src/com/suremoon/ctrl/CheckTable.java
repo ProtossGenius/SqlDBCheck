@@ -1,5 +1,6 @@
 package com.suremoon.ctrl;
 
+import com.suremoon.db_about.DBChecker;
 import com.suremoon.db_about.DBLoader;
 import com.suremoon.db_about.LineData;
 import com.suremoon.js_support.ScriptCheckLine;
@@ -12,8 +13,8 @@ public class CheckTable {
     ScriptCheckLine scl;
     ResultSet rs;
     String tableName;
-    DBLoader dbLoader;
-    public CheckTable(File scriptFile, String tableName, ResultSet allData, DBLoader dbLoader) {
+    DBChecker checker;
+    public CheckTable(File scriptFile, String tableName, ResultSet allData, DBChecker checker) {
         try {
             scl = new ScriptCheckLine(scriptFile.getPath());
         } catch (Exception e) {
@@ -21,13 +22,13 @@ public class CheckTable {
         }
         rs = allData;
         this.tableName = tableName;
-        this.dbLoader = dbLoader;
+        this.checker = checker;
     }
 
     public void doCheck() throws SQLException {
         while (rs.next()){
             try {
-                scl.doCheck(new LineData(rs), dbLoader);
+                scl.doCheck(new LineData(rs), checker);
             } catch (Exception e){
                 Loger.getLoger().writeException(e);
             }

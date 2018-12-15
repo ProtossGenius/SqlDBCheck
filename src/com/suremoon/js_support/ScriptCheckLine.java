@@ -1,6 +1,6 @@
 package com.suremoon.js_support;
 
-import com.suremoon.db_about.DBLoader;
+import com.suremoon.db_about.DBChecker;
 import com.suremoon.db_about.LineData;
 
 import javax.script.Invocable;
@@ -23,7 +23,7 @@ public class ScriptCheckLine implements LineCheckItf{
 
 
     @Override
-    public void doCheck(LineData lineData, DBLoader db) throws ScriptException, NoSuchMethodException {
-        invoke.invokeFunction("doCheck", lineData, db);
+    public void doCheck(LineData lineData, DBChecker checker) throws ScriptException, NoSuchMethodException {
+        invoke.invokeFunction("doCheck", lineData, checker);
     }
 }

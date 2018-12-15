@@ -1,5 +1,6 @@
 package com.suremoon.ctrl;
 
+import com.suremoon.db_about.DBChecker;
 import com.suremoon.db_about.DBLoader;
 import com.suremoon.db_about.TableData;
 
@@ -57,8 +58,9 @@ public class CheckCtrl {
         }
         String name = file.getName();
         if(name.endsWith(".js")){
-            TableData data = loader.getTableData(name.substring(0, name.length()-3));
-            new CheckTable(file, name, data.getResultSet(), loader).doCheck();
+            String tableName = name.substring(0, name.length()-3);
+            TableData data = loader.getTableData(tableName);
+            new CheckTable(file, name, data.getResultSet(), new DBChecker(tableName, loader)).doCheck();
             data.close();
         }
     }
