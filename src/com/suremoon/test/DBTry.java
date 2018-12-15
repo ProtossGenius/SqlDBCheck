@@ -1,5 +1,6 @@
 package com.suremoon.test;
 
+import java.io.File;
 import java.sql.*;
 
 public class DBTry {
@@ -7,12 +8,16 @@ public class DBTry {
     private static final String DB_URL = "jdbc:sqlite:./db/shop.db";
 
     public static void main(String[] args) throws Exception {
-//        testCreate();
-        testFind();
+        testCreate();
+//        testFind();
     }
 
     static void testCreate() throws Exception {
         Class.forName(Class_Name);
+        File f = new File("./db/shop.db");
+        if (f.exists()) {
+            f.delete();
+        }
         Connection conn = DriverManager.getConnection(DB_URL);
         Statement stat = conn.createStatement();
         stat.executeUpdate("create table `user`(id int, name varchar(20) );");
@@ -22,6 +27,10 @@ public class DBTry {
         stat.executeUpdate("insert  into items values (1, 10000, 1);");
         stat.executeUpdate("insert  into items values (2, 100001, 1);");//uid not exist.
         stat.executeUpdate("insert  into items values (2, 100001, 1);");//uid not exist.
+        stat.executeUpdate("create table  goods(id int, des varchar(64) );");//about des: Itemid|price|discount;itemid|price|discount
+        stat.executeUpdate("insert  into goods values (1, '1|100|100');");
+        stat.executeUpdate("insert  into goods values (2, '2|25|100');");
+        stat.executeUpdate("insert  into goods values (3, '1||100|50;2|25|75');");
         conn.close();
     }
 

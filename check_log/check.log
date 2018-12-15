@@ -1,3 +1,2 @@
-[DATA_MORE_THAN_ONE] in table[items] columnName[id] value[1] nums 2
+[DATA_MORE_THAN_ONE] in table[items] columnName[id] value[2] nums 2
 [DATA_NOT_FOUND] in table[user] columnName[id] value[100001]
-[DATA_MORE_THAN_ONE] in table[items] columnName[id] value[1] nums 2

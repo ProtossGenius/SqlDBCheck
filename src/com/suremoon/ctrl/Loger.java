@@ -1,12 +1,12 @@
 package com.suremoon.ctrl;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
 
 public class Loger {
-
+    HashSet<String> writed = new HashSet<>();
     FileWriter log;
 
     static Loger loger;
@@ -33,6 +33,10 @@ public class Loger {
     }
 
     public void writeLog(String str) {
+        if(writed.contains(str)){
+            return;
+        }
+        writed.add(str);
         System.out.println(str);
         try {
             log.write(str + "\n");
