@@ -1,21 +1,23 @@
 package com.suremoon.ctrl;
 
-import com.suremoon.db_about.DBChecker;
-import com.suremoon.db_about.DBLoader;
+import com.suremoon.db_about.SqLiteDBLoader;
 import com.suremoon.db_about.TableData;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CheckCtrl {
 
     private String DBPath = "./db/shop.db", scriptDirectory = "./scripts", logFile = "./check_log/check.log";
-    private DBLoader loader;
+    private SqLiteDBLoader loader;
     private static CheckCtrl cc = null;
     protected CheckCtrl() throws IOException, SQLException, ClassNotFoundException {
         initCfg();
-        loader = new DBLoader(DBPath);
+        loader = new SqLiteDBLoader(DBPath);
         File f = new File(logFile);
         if(f.isDirectory()){
             f =new File(logFile + "/check.log");

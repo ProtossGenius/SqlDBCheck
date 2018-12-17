@@ -5,12 +5,12 @@ import com.suremoon.ctrl.Loger;
 import java.sql.*;
 import java.util.HashSet;
 
-public class DBLoader {
+public class SqLiteDBLoader {
     private static final String Class_Name = "org.sqlite.JDBC";
     Connection conn;
     private HashSet<String> querySet = new HashSet<>();
 
-    public DBLoader(String path) throws ClassNotFoundException, SQLException {
+    public SqLiteDBLoader(String path) throws ClassNotFoundException, SQLException {
         Class.forName(Class_Name);
         conn = DriverManager.getConnection("jdbc:sqlite:" + path);
     }

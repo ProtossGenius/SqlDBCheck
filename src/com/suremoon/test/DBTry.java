@@ -1,7 +1,9 @@
 package com.suremoon.test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.sql.*;
+import java.util.Scanner;
 
 public class DBTry {
     private static final String Class_Name = "org.sqlite.JDBC";
@@ -14,23 +16,17 @@ public class DBTry {
 
     static void testCreate() throws Exception {
         Class.forName(Class_Name);
+        File sqlin = new File("./db/shop.sql");
+        Scanner sin = new Scanner(new FileInputStream(sqlin));
         File f = new File("./db/shop.db");
         if (f.exists()) {
             f.delete();
         }
         Connection conn = DriverManager.getConnection(DB_URL);
         Statement stat = conn.createStatement();
-        stat.executeUpdate("create table `user`(id int, name varchar(20) );");
-        stat.executeUpdate("insert into `user` values(10000, 'moon')");
-        stat.executeUpdate("insert into `user` values(10001, 'sui')");
-        stat.executeUpdate("create table  items(id int, uid int, itype int);");
-        stat.executeUpdate("insert  into items values (1, 10000, 1);");
-        stat.executeUpdate("insert  into items values (2, 100001, 1);");//uid not exist.
-        stat.executeUpdate("insert  into items values (2, 100001, 1);");//uid not exist.
-        stat.executeUpdate("create table  goods(id int, des varchar(64) );");//about des: Itemid|price|discount;itemid|price|discount
-        stat.executeUpdate("insert  into goods values (1, '1|100|100');");
-        stat.executeUpdate("insert  into goods values (2, '2|25|100');");
-        stat.executeUpdate("insert  into goods values (3, '1||100|50;2|25|75');");
+        while(sin.hasNext()){
+            stat.executeUpdate(sin.nextLine());
+        }
         conn.close();
     }
 
@@ -46,7 +42,6 @@ public class DBTry {
         ResultSetMetaData rsmd = rs.getMetaData();
         System.out.println(rs.getInt(1));
         conn.close();
-        ;
     }
 
 }

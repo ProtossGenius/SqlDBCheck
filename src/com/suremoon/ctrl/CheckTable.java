@@ -1,7 +1,5 @@
 package com.suremoon.ctrl;
 
-import com.suremoon.db_about.DBChecker;
-import com.suremoon.db_about.DBLoader;
 import com.suremoon.db_about.LineData;
 import com.suremoon.js_support.ScriptCheckLine;
 
