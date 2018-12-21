@@ -65,6 +65,7 @@ public class CheckCtrl {
         String name = file.getName();
         if (name.endsWith(".js")) {
             String tableName = name.substring(0, name.length() - 3);
+            System.out.println("checking table: " + tableName + "..........................");
             TableData data = loader.getTableData(tableName);
             new CheckTable(file, name, data.getResultSet(), new DBChecker(tableName, loader)).doCheck();
             data.close();
