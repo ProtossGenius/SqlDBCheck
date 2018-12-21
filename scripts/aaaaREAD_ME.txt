@@ -1,8 +1,8 @@
 function doCheck(lineData, checker) {
     //Frequently used method
     id = lineData.getString(str)
-    checker.singleValueCheck("goods", "id", id);
-    checker.conditionCheck("items", "`id`='" + id + "'")
+    checker.singleValueCheck(lineData, "goods", "id", id);
+    checker.conditionCheck(lineData, "items", "`id`='" + id + "'")
 	checker.sqlAct(function (stat) {
         sql = "select count(*) from`user` where id ='" + id + "';";
         resultSet = stat.executeQuery(sql);

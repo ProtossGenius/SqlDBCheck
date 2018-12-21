@@ -39,7 +39,7 @@ public class DBLoader {
      * @param value
      * @throws SQLException
      */
-    public void checkStringVal(String dealingTable, String tableName, String colName, String value) throws SQLException {
+    public void checkStringVal(LineData lineData, String dealingTable, String tableName, String colName, String value) throws SQLException {
         String sql = String.format("select count(*) from`%s` where `%s`='%s';", tableName, colName, value);
         if (querySet.contains(sql)) {
             return;
@@ -54,10 +54,10 @@ public class DBLoader {
             case 1://right;
                 return;
             case 0://not found
-                Loger.getLoger().writeLog(String.format("[DATA_NOT_FOUND] when check table [%s].Data missing in table[%s] columnName[%s] value[%s]", dealingTable, tableName, colName, value));
+                Loger.getLoger().writeLog(String.format("[DATA_NOT_FOUND] when check table [%s].Data missing in table[%s] columnName[%s] value[%s]! more info: in line[%d]", dealingTable, tableName, colName, value, lineData.getLineNum()));
                 return;
             default:
-                Loger.getLoger().writeLog(String.format("[DATA_MORE_THAN_ONE] when check table [%s].Data missing in table[%s] columnName[%s] value[%s] nums %d", dealingTable, tableName, colName, value, nums));
+                Loger.getLoger().writeLog(String.format("[DATA_MORE_THAN_ONE] when check table [%s].Data missing in table[%s] columnName[%s] value[%s] nums %d! more info: in line[%d]", dealingTable, tableName, colName, value, nums, lineData.getLineNum()));
         }
     }
 
@@ -72,7 +72,7 @@ public class DBLoader {
      * The part after the sql statement's "where" keyword
      * @throws SQLException
      */
-    public void checkValExist(String dealingTable, String tableName, String condition) throws SQLException {
+    public void checkValExist(LineData lineData, String dealingTable, String tableName, String condition) throws SQLException {
         String sql = String.format("select count(*) from`%s` where %s;", tableName, condition);
         if (querySet.contains(sql)) {
             return;
@@ -87,10 +87,10 @@ public class DBLoader {
             case 1://right;
                 return;
             case 0://not found
-                Loger.getLoger().writeLog(String.format("[DATA_NOT_FOUND] when check table [%s].Data missing in table[%s] condition is:[%s]", dealingTable, tableName, condition));
+                Loger.getLoger().writeLog(String.format("[DATA_NOT_FOUND] when check table [%s].Data missing in table[%s] condition is:[%s]! more info: in line[%d]", dealingTable, tableName, condition, lineData.getLineNum()));
                 return;
             default:
-                Loger.getLoger().writeLog(String.format("[DATA_MORE_THAN_ONE] when check table [%s].Data repeat in table[%s] condition[%s] nums %d", dealingTable, tableName, condition, nums));
+                Loger.getLoger().writeLog(String.format("[DATA_MORE_THAN_ONE] when check table [%s].Data repeat in table[%s] condition[%s] nums %d!more info: in line[%d]", dealingTable, tableName, condition, nums, lineData.getLineNum()));
         }
     }
 }

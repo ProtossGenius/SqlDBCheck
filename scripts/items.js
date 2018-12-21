@@ -10,8 +10,8 @@ function doCheck(lineData, checker) {
      *    The part that needs to be parsed is parsed here, and then the following method is used to determine whether it
      * exists. If it does not exist, it will be written to the log file.
      */
-    checker.singleValueCheck("user", "id", uid);//When there is only one primary key
-    checker.conditionCheck("items", "`id`='" + id + "'");//When there are multiple primary keys or need a special query
+    checker.singleValueCheck(lineData, "user", "id", uid);//When there is only one primary key
+    checker.conditionCheck(lineData, "items", "`id`='" + id + "'");//When there are multiple primary keys or need a special query
 }
 
 

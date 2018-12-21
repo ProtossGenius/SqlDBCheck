@@ -24,9 +24,10 @@ public class CheckTable {
     }
 
     public void doCheck() throws SQLException {
+        int idx = 0;
         while (rs.next()){
             try {
-                scl.doCheck(new LineData(rs), checker);
+                scl.doCheck(new LineData(rs, ++idx), checker);
             } catch (Exception e){
                 Loger.getLoger().writeException(e);
             }
