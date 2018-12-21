@@ -48,7 +48,9 @@ public class CheckCtrl {
             System.err.printf("config for script [%s] not directory", base.getPath());
             return;
         }
+        System.out.println("=============================start check================================");
         fileLoop(base);
+        System.out.println("=============================check end =================================");
     }
 
 
