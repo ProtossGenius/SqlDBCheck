@@ -50,7 +50,14 @@ public class CheckCtrl {
         }
         System.out.println("=============================start check================================");
         fileLoop(base);
+        Loger loger =Loger.getLoger();
+        int num = loger.numOfOutput();
         System.out.println("=============================check end =================================");
+        if(num == 0){
+            System.out.println("check accept!");
+        }else {
+            System.err.println("check end!, [" + num + "] error founded, write to logfile: [" + logFile + "]");
+        }
     }
 
 

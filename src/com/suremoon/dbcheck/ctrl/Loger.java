@@ -46,6 +46,10 @@ public class Loger {
         }
     }
 
+    public int numOfOutput(){
+        return writed.size();
+    }
+
     public void writeException(Exception e){
         e.printStackTrace();
         writeLog("[EXCEPTION]" + e.toString());
