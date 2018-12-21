@@ -1,4 +1,4 @@
-package com.suremoon.test;
+package com.suremoon.dbcheck.test;
 
 import java.io.File;
 import java.io.FileInputStream;

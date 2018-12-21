@@ -1,6 +1,6 @@
-package com.suremoon.db_about;
+package com.suremoon.dbcheck.db_about;
 
-import com.suremoon.ctrl.Loger;
+import com.suremoon.dbcheck.ctrl.Loger;
 
 import java.sql.*;
 import java.util.HashSet;

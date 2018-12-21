@@ -1,7 +1,7 @@
-package com.suremoon.js_support;
+package com.suremoon.dbcheck.js_support;
 
-import com.suremoon.ctrl.DBChecker;
-import com.suremoon.db_about.LineData;
+import com.suremoon.dbcheck.ctrl.DBChecker;
+import com.suremoon.dbcheck.db_about.LineData;
 
 import javax.script.ScriptException;
 

@@ -1,7 +1,7 @@
-package com.suremoon.ctrl;
+package com.suremoon.dbcheck.ctrl;
 
-import com.suremoon.db_about.SqLiteDBLoader;
-import com.suremoon.db_about.TableData;
+import com.suremoon.dbcheck.db_about.SqLiteDBLoader;
+import com.suremoon.dbcheck.db_about.TableData;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,8 +15,18 @@ public class CheckCtrl {
     private String DBPath = "./db/shop.db", scriptDirectory = "./scripts", logFile = "./check_log/check.log";
     private SqLiteDBLoader loader;
     private static CheckCtrl cc = null;
-    protected CheckCtrl() throws IOException, SQLException, ClassNotFoundException {
-        initCfg();
+    protected CheckCtrl() {
+    }
+
+    public synchronized static CheckCtrl getCheckCtrl() {
+        if(cc == null){
+            return cc = new CheckCtrl();
+        }
+        return cc;
+    }
+
+    public void doCheck(String configPath) throws SQLException, IOException, ClassNotFoundException {
+        initCfg(configPath);
         loader = new SqLiteDBLoader(DBPath);
         File f = new File(logFile);
         if(f.isDirectory()){
@@ -27,16 +37,6 @@ public class CheckCtrl {
             parent.mkdirs();
         }
         Loger.init(f);
-    }
-
-    public synchronized static CheckCtrl getCheckCtrl() throws SQLException, IOException, ClassNotFoundException {
-        if(cc == null){
-            return cc = new CheckCtrl();
-        }
-        return cc;
-    }
-
-    public void doCheck() throws SQLException {
         File base = new File(scriptDirectory);
         if(!base.exists()){
             System.err.printf("script directory [%s] not exist. existing...", scriptDirectory);
@@ -67,8 +67,8 @@ public class CheckCtrl {
         }
     }
 
-    private void initCfg() throws FileNotFoundException {
-        File cfgFile = new File("./configs/check_ctrl.cfg");
+    private void initCfg(String configPath) throws FileNotFoundException {
+        File cfgFile = new File(configPath);
         if (!cfgFile.exists()) {
             System.err.println("config file not exist! try use default config.\n" +
                     "dbPath = ./db/shop.db\n" +
@@ -107,5 +107,4 @@ public class CheckCtrl {
             }
         }
     }
-
 }

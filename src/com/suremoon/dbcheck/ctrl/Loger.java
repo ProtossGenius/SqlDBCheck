@@ -1,4 +1,4 @@
-package com.suremoon.ctrl;
+package com.suremoon.dbcheck.ctrl;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,7 +12,7 @@ public class Loger {
     static Loger loger;
 
     protected static void init(File f) throws IOException {
-        System.out.println("set log file as " + f.getPath());
+        System.out.println("set output file as " + f.getPath());
         loger = new Loger(f);
     }
 

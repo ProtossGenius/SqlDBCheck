@@ -1,7 +1,7 @@
-package com.suremoon.ctrl;
+package com.suremoon.dbcheck.ctrl;
 
-import com.suremoon.db_about.LineData;
-import com.suremoon.js_support.ScriptCheckLine;
+import com.suremoon.dbcheck.db_about.LineData;
+import com.suremoon.dbcheck.js_support.ScriptCheckLine;
 
 import java.io.File;
 import java.sql.ResultSet;

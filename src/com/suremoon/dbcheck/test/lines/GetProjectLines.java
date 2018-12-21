@@ -1,4 +1,4 @@
-package com.suremoon.test.lines;
+package com.suremoon.dbcheck.test.lines;
 
 import java.io.BufferedReader;
 import java.io.File;

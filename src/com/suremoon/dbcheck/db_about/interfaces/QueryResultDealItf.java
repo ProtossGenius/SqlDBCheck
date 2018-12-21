@@ -1,4 +1,4 @@
-package com.suremoon.db_about.interfaces;
+package com.suremoon.dbcheck.db_about.interfaces;
 
 import java.sql.ResultSet;
 

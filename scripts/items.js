@@ -1,7 +1,7 @@
 //I probably can't use it here, just hint that there is such a usage, you can use the java class directly, this is the coolest place I think.
-// var CheckCtrl = Java.type("com.suremoon.ctrl.CheckCtrl");
+// var CheckCtrl = Java.type("com.suremoon.dbcheck.ctrl.CheckCtrl");
 // var ctrl = CheckCtrl.getCheckCtrl();
-// var DBLoader = Java.type("com.suremoon.db_about.DBLoader");
+// var DBLoader = Java.type("com.suremoon.dbcheck.db_about.DBLoader");
 
 function doCheck(lineData, checker) {
     uid = lineData.getString("uid");

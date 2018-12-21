@@ -1,4 +1,4 @@
-package com.suremoon.test.coding_deal;
+package com.suremoon.dbcheck.test.coding_deal;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

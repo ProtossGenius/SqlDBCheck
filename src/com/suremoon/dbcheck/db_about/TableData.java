@@ -1,4 +1,4 @@
-package com.suremoon.db_about;
+package com.suremoon.dbcheck.db_about;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

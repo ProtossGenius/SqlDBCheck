@@ -1,8 +1,8 @@
-package com.suremoon.ctrl;
+package com.suremoon.dbcheck.ctrl;
 
-import com.suremoon.db_about.SqLiteDBLoader;
-import com.suremoon.db_about.interfaces.QueryResultDealItf;
-import com.suremoon.db_about.interfaces.SqlActionItf;
+import com.suremoon.dbcheck.db_about.SqLiteDBLoader;
+import com.suremoon.dbcheck.db_about.interfaces.QueryResultDealItf;
+import com.suremoon.dbcheck.db_about.interfaces.SqlActionItf;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
