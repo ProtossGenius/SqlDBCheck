@@ -5,14 +5,14 @@ import com.suremoon.dbcheck.ctrl.Loger;
 import java.sql.*;
 import java.util.HashSet;
 
-public class SqLiteDBLoader {
-    private static final String Class_Name = "org.sqlite.JDBC";
+public class DBLoader {
+
     Connection conn;
     private HashSet<String> querySet = new HashSet<>();
 
-    public SqLiteDBLoader(String path) throws ClassNotFoundException, SQLException {
-        Class.forName(Class_Name);
-        conn = DriverManager.getConnection("jdbc:sqlite:" + path);
+    public DBLoader(String className, String path) throws ClassNotFoundException, SQLException {
+        Class.forName(className);
+        conn = DriverManager.getConnection(path);
     }
 
     public TableData getTableData(String tableName) throws SQLException {
@@ -32,7 +32,7 @@ public class SqLiteDBLoader {
     /**
      *
      * @param dealingTable
-* The name of the table being processed by the js script
+     * The name of the table being processed by the js script
      * @param tableName
      * target table name
      * @param colName
@@ -93,5 +93,4 @@ public class SqLiteDBLoader {
                 Loger.getLoger().writeLog(String.format("[DATA_MORE_THAN_ONE] when check table [%s].Data repeat in table[%s] condition[%s] nums %d", dealingTable, tableName, condition, nums));
         }
     }
-
 }

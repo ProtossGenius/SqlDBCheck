@@ -1,6 +1,6 @@
 package com.suremoon.dbcheck.ctrl;
 
-import com.suremoon.dbcheck.db_about.SqLiteDBLoader;
+import com.suremoon.dbcheck.db_about.DBLoader;
 import com.suremoon.dbcheck.db_about.TableData;
 
 import java.io.File;
@@ -12,14 +12,16 @@ import java.util.Scanner;
 
 public class CheckCtrl {
 
-    private String DBPath = "./db/shop.db", scriptDirectory = "./scripts", logFile = "./check_log/check.log";
-    private SqLiteDBLoader loader;
+    private String DBPath = "./db/shop.db", scriptDirectory = "./scripts",
+            logFile = "./check_log/check.log", className = "org.sqlite.JDBC";
+    private DBLoader loader;
     private static CheckCtrl cc = null;
+
     protected CheckCtrl() {
     }
 
     public synchronized static CheckCtrl getCheckCtrl() {
-        if(cc == null){
+        if (cc == null) {
             return cc = new CheckCtrl();
         }
         return cc;
@@ -27,23 +29,23 @@ public class CheckCtrl {
 
     public void doCheck(String configPath) throws SQLException, IOException, ClassNotFoundException {
         initCfg(configPath);
-        loader = new SqLiteDBLoader(DBPath);
+        loader = new DBLoader(className, DBPath);
         File f = new File(logFile);
-        if(f.isDirectory()){
-            f =new File(logFile + "/check.log");
+        if (f.isDirectory()) {
+            f = new File(logFile + "/check.log");
             System.err.printf("log file is a directory, now set as %s\n", f.getPath());
-        }else {
+        } else {
             File parent = f.getParentFile();
             parent.mkdirs();
         }
         Loger.init(f);
         File base = new File(scriptDirectory);
-        if(!base.exists()){
+        if (!base.exists()) {
             System.err.printf("script directory [%s] not exist. existing...", scriptDirectory);
             return;
         }
-        if(!base.isDirectory()){
-            System.err.println("config for script [%s] not directory");
+        if (!base.isDirectory()) {
+            System.err.printf("config for script [%s] not directory", base.getPath());
             return;
         }
         fileLoop(base);
@@ -51,7 +53,7 @@ public class CheckCtrl {
 
 
     private void fileLoop(File file) throws SQLException {
-        if(file.isDirectory()){
+        if (file.isDirectory() && !file.getName().equals("libs")) {
             File files[] = file.listFiles();
             for (File f : files) {
                 fileLoop(f);
@@ -59,8 +61,8 @@ public class CheckCtrl {
             return;
         }
         String name = file.getName();
-        if(name.endsWith(".js")){
-            String tableName = name.substring(0, name.length()-3);
+        if (name.endsWith(".js")) {
+            String tableName = name.substring(0, name.length() - 3);
             TableData data = loader.getTableData(tableName);
             new CheckTable(file, name, data.getResultSet(), new DBChecker(tableName, loader)).doCheck();
             data.close();
@@ -101,6 +103,10 @@ public class CheckCtrl {
                 case "logfile":
                 case "log_file":
                     this.logFile = value;
+                    break;
+                case "classname":
+                case "class_name":
+                    this.className = value;
                     break;
                 default:
                     System.err.println("undeal name: " + name);

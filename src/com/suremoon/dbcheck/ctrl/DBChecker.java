@@ -1,6 +1,6 @@
 package com.suremoon.dbcheck.ctrl;
 
-import com.suremoon.dbcheck.db_about.SqLiteDBLoader;
+import com.suremoon.dbcheck.db_about.DBLoader;
 import com.suremoon.dbcheck.db_about.interfaces.QueryResultDealItf;
 import com.suremoon.dbcheck.db_about.interfaces.SqlActionItf;
 
@@ -11,9 +11,9 @@ import java.sql.Statement;
 public class DBChecker {
     Loger loger = Loger.getLoger();
     String tableToCheck;
-    SqLiteDBLoader loader;
+    DBLoader loader;
 
-    public DBChecker(String tableToCheck, SqLiteDBLoader loader) {
+    public DBChecker(String tableToCheck, DBLoader loader) {
         this.tableToCheck = tableToCheck;
         this.loader = loader;
     }

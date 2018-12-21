@@ -23,6 +23,10 @@ public class StartParamDeal {
         return param;
     }
 
+    public StartParam getParam(String name){
+        return params.get(name);
+    }
+
     public void parse(String[] args) {
         PopOnlyQueue<String> stack = new PopOnlyQueue<>(args);
         while (!stack.isEmpty()) {

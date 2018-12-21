@@ -16,7 +16,7 @@ I don't know how to describe it, I should pull it down, then I can open it with 
 
 1. Configure ./configs/check_ctrl.cfg
 2. Write the js script in scrptDirectory. See the example for details.
-3. Run
+3. Use a method similar to "java -cp ./out/artifacts/SqlDBCheck_jar/SqlDBCheck.jar com.suremoon.dbcheck.Main -classpath ./libs" to start running. After -classpath, add the jar path that the database depends on.
 4. More content will be written to the wiki.
 #### Participating in contributions
 
